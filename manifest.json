@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "aria2c Downloader for Firefox",
+  "version": "1.0.0",
+  "description": "Send Firefox downloads to aria2c using 16 connections and 16 splits.",
+  "permissions": ["downloads", "nativeMessaging", "storage", "activeTab"],
+  "browser_action": {"default_title": "aria2c Downloader", "default_popup": "popup.html"},
+  "background": {"scripts": ["background.js"]},
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "aria2c-16x16-downloader@example.local",
+      "strict_min_version": "109.0"
+    }
+  }
+}
