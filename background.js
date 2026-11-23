@@ -15,12 +15,12 @@ browser.runtime.onMessage.addListener(message => {
 // Optional automatic handoff. If aria2c cannot start, Firefox's original download stays active.
 browser.downloads.onCreated.addListener(async item => {
   const {autoDownload} = await browser.storage.local.get({autoDownload: false});
-  if (!autoDownload || !item.url || !/^https?:\\/\\//i.test(item.url) ||
+  if (!autoDownload || !item.url || !/^https?:\/\//i.test(item.url) ||
       item.state === "complete" || item.byExtensionId) return;
 
-  const parts = (item.filename || "").split(/[\\\\/]/);
+  const parts = (item.filename || "").split(/[\\/]/);
   const filename = parts.pop() || "";
-  const dir = parts.length ? parts.join("\\\\") : "";
+  const dir = parts.length ? parts.join("\\") : "";
 
   try {
     const result = await sendToAria2({url: item.url, dir, filename});
