@@ -29,8 +29,8 @@ $Manifest = @{
 $Json = $Manifest | ConvertTo-Json -Depth 4
 [System.IO.File]::WriteAllText($ManifestPath, $Json, [System.Text.UTF8Encoding]::new($false))
 
-$RegistryPath = "HKCU:\\Software\\Mozilla\\NativeMessagingHosts\\com.openai.aria2c16"
+$RegistryPath = "HKCU:\Software\Mozilla\NativeMessagingHosts\com.openai.aria2c16"
 New-Item -Path $RegistryPath -Force | Out-Null
-Set-ItemProperty -Path $RegistryPath -Name "(default)" -Value $ManifestPath
+Set-Item -Path $RegistryPath -Value $ManifestPath
 
 Write-Host "aria2c native host installed. Restart Firefox and load manifest.json from about:debugging."
